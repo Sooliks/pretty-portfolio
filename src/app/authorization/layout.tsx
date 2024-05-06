@@ -14,7 +14,7 @@ const AuthorizationLayout = async ({children} : {children: React.ReactNode}) => 
         permanentRedirect(`/`)
     }
     return (
-        <div className={"w-full flex items-center justify-center flex-col"}>
+        <div className={"w-full flex items-center justify-center flex-col h-screen"}>
             <Card className={"flex flex-row p-2 w-2/5 justify-center"}>
                 <Link href={'/authorization'}>
                     <Button className={"mx-4"}>{'Войти'}</Button>
@@ -23,7 +23,7 @@ const AuthorizationLayout = async ({children} : {children: React.ReactNode}) => 
                     <Button className={"mx-4"}>{'Регистрация'}</Button>
                 </Link>
             </Card>
-            <Card className={"w-2/5 h-5/6 mt-2 flex flex-row justify-center items-start"}>
+            <Card className={"w-2/5 h-4/6 mt-2 flex flex-row justify-center items-start"}>
                 <Suspense fallback={<SpinLoading/>}>
                     {children}
                 </Suspense>

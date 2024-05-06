@@ -25,7 +25,7 @@ const LoginPage = () => {
             redirect: false
         })
         if(res && !res.error){
-            replace('/admin')
+            replace('/')
         }else {
             alert('неверный емаил или пароль');
             setIsLoading(false)
