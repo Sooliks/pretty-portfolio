@@ -3,6 +3,7 @@ import React from 'react';
 import {Button, Navbar, NavbarBrand, NavbarContent, NavbarItem} from "@nextui-org/react";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
+import {useSession} from "next-auth/react";
 
 
 type HeaderProps = {
@@ -10,10 +11,11 @@ type HeaderProps = {
 }
 const Header = ({links}: HeaderProps) => {
     const pathname = usePathname();
+    const session = useSession();
     return (
-        <header className={'w-full'}>
+        <header className={'border-b-1 w-full border-b-slate-600'}>
             <Navbar>
-                <NavbarBrand className={'max-sm:hidden'}>
+                <NavbarBrand as={Link} href={'/'} className={'max-sm:hidden'}>
                     <p className="font-bold text-inherit">Pretty Portfolio</p>
                 </NavbarBrand>
                 <NavbarContent justify="center">
@@ -27,9 +29,13 @@ const Header = ({links}: HeaderProps) => {
                 </NavbarContent>
                 <NavbarContent justify="end">
                     <NavbarItem>
-                        <Button as={Link} color="primary" href="/authorization" variant="flat">
-                            Войти
-                        </Button>
+                        {session && !session.data ?
+                            <Button as={Link} color="primary" href="/authorization" variant="flat">
+                                Войти
+                            </Button>
+                            :
+                            <Button>Профиль</Button>
+                        }
                     </NavbarItem>
                 </NavbarContent>
             </Navbar>

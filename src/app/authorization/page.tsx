@@ -36,7 +36,7 @@ const LoginPage = () => {
             <InputForm
                 error={errors.email?.message}
                 type={"email"}
-                placeholder={'email'}
+                placeholder={'Email'}
                 form={{
                     ...register('email', {
                         required: 'required'
@@ -46,7 +46,7 @@ const LoginPage = () => {
             <InputForm
                 error={errors.password?.message}
                 type={"password"}
-                placeholder={'password'}
+                placeholder={'Пароль'}
                 form={{
                     ...register('password', {
                         required: 'required'

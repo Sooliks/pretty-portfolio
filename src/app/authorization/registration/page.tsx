@@ -47,10 +47,10 @@ const RegistrationPage = () => {
                 placeholder={'Email'}
                 form={{
                     ...register('email', {
-                        required: 'Required',
+                        required: 'Пожалуйста введите email',
                         pattern: {
                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: 'Invalid'
+                            message: 'Введите корректный email'
                         }
                     })
                 }}
@@ -58,13 +58,13 @@ const RegistrationPage = () => {
             <InputForm
                 error={errors.login?.message}
                 type={"login"}
-                placeholder={'login'}
+                placeholder={'Логин'}
                 form={{
                     ...register('login', {
-                        required: 'required',
+                        required: 'Пожалуйста введите логин',
                         pattern: {
                             value: /^(?=.*[A-Za-z0-9]$)[A-Za-z][A-Za-z\d.-]{0,19}$/,
-                            message: 'invalid'
+                            message: 'Введите корректный логин'
                         }
                     })
                 }}
@@ -72,13 +72,13 @@ const RegistrationPage = () => {
             <InputForm
                 error={errors.password?.message}
                 type={"password"}
-                placeholder={'password'}
+                placeholder={'Пароль'}
                 form={{
                     ...register('password', {
-                        required: 'required',
+                        required: 'Пожалуйста введите пароль',
                         validate: () => {
                             if (watch('password').length <= 8) {
-                                return 'watch(\'password\').length <= 8';
+                                return 'Пароль должен быть больше 8-ми символов';
                             }
                         }
                     })
@@ -87,13 +87,13 @@ const RegistrationPage = () => {
             <InputForm
                 error={errors.secondPassword?.message}
                 type={"password"}
-                placeholder={'secondPassword'}
+                placeholder={'Повторите пароль'}
                 form={{
                     ...register('secondPassword', {
-                        required: 'required',
+                        required: 'Пожалуйста повторите пароль',
                         validate: (value: string) => {
                             if (watch('password') !== value) {
-                                return 'не совпадает';
+                                return 'Пароли не совпадают';
                             }
                         }
                     })
