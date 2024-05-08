@@ -1,11 +1,12 @@
+'use client'
 import React from 'react';
 
-const ProfilePage = () => {
+const Filter: React.FC = () => {
     return (
         <div>
-            
+
         </div>
     );
 };
 
-export default ProfilePage;
+export default Filter;

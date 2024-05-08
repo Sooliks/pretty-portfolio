@@ -15,7 +15,7 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
         <html lang="en">
             <body className={inter.className + " dark h-screen"}>
                 <Providers>
-                    <Header links={[{title: 'Студенты', path: '/profile'}]}/>
+                    <Header links={[{title: 'Студенты', path: '/profiles'}]}/>
                     {children}
                 </Providers>
             </body>

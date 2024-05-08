@@ -6,7 +6,8 @@ import {getServerSession} from "next-auth";
 import {permanentRedirect} from "next/navigation";
 import {Metadata} from "next";
 export const metadata: Metadata = {
-    robots: 'noindex, nofollow'
+    robots: 'noindex, nofollow',
+    title: 'Pretty Portfolio - Авторизация'
 }
 const AuthorizationLayout = async ({children} : {children: React.ReactNode}) => {
     const session = await getServerSession()

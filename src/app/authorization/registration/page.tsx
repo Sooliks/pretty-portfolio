@@ -32,7 +32,7 @@ const RegistrationPage = () => {
                 redirect: false
             })
             if(r && !r.error){
-                replace('/')
+
             }
         }else {
             alert(res.message);

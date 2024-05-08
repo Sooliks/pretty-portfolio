@@ -13,7 +13,7 @@ const Header = ({links}: HeaderProps) => {
     const pathname = usePathname();
     const session = useSession();
     return (
-        <header className={'border-b-1 w-full border-b-slate-600'}>
+        <header className={'border-b-1 w-full border-b-gray-600'}>
             <Navbar>
                 <NavbarBrand as={Link} href={'/'} className={'max-sm:hidden'}>
                     <p className="font-bold text-inherit">Pretty Portfolio</p>
@@ -34,7 +34,7 @@ const Header = ({links}: HeaderProps) => {
                                 Войти
                             </Button>
                             :
-                            <Button>Профиль</Button>
+                            <Button as={Link}  href={`/profiles/${session.data.user.id}`}>Профиль</Button>
                         }
                     </NavbarItem>
                 </NavbarContent>
