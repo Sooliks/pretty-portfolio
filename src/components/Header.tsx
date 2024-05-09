@@ -34,7 +34,7 @@ const Header = ({links}: HeaderProps) => {
                                 Войти
                             </Button>
                             :
-                            <Button as={Link}  href={`/profiles/${session.data.user.id}`}>Профиль</Button>
+                            <Button variant="flat" as={Link}  href={`/profiles/${session.data.user.id}`}>Профиль</Button>
                         }
                     </NavbarItem>
                 </NavbarContent>

@@ -8,7 +8,7 @@ type InformationPageProps = {
 const InformationPage = ({params}:InformationPageProps) => {
     return (
         <div>
-            информация {params.id}
+            контакты {params.id}
         </div>
     );
 };

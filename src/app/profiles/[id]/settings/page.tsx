@@ -1,4 +1,5 @@
 import React from 'react';
+import {getServerSession} from "next-auth";
 
 
 type SettingsPageProps = {
@@ -6,7 +7,10 @@ type SettingsPageProps = {
         id: string
     }
 }
-const SettingsPage = ({params}:SettingsPageProps) => {
+const SettingsPage = async ({params}:SettingsPageProps) => {
+    const session = await getServerSession();
+    if(!session || !session.user)return;
+    if(session.user.id !== params.id)return;
     return (
         <div>
             настройки {params.id}

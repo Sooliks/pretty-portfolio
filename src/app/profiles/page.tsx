@@ -1,9 +1,19 @@
 import React from 'react';
+import {getPreviewsPortfolio} from "@/server-actions/profiles";
+import PreviewPortfolio from "@/components/PreviewPortfolio";
 
-const ProfilesPage = () => {
+const ProfilesPage = async () => {
+    const previews = await getPreviewsPortfolio();
     return (
-        <div>
-            
+        <div className={'flex flex-row p-4'}>
+            {previews.length > 0 ? previews.map(preview=> {
+                if(!preview.description || !preview.id || !preview.birthDay)return;
+
+                return <PreviewPortfolio key={preview.id} description={preview.description} id={preview.id} birthDay={preview.birthDay}/>
+            })
+                :
+                <p>Не одного портфолио пока нету</p>
+            }
         </div>
     );
 };
