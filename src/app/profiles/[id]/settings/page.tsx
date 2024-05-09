@@ -6,6 +6,7 @@ import {authConfig} from "@/configs/auth";
 import Education from "@/app/profiles/[id]/settings/Education";
 import {getBaseInfo, getEducations, getProjects} from "@/server-actions/profiles";
 import Projects from "@/app/profiles/[id]/settings/Projects";
+import UploadAvatar from "@/app/profiles/[id]/settings/UploadAvatar";
 
 
 type SettingsPageProps = {
@@ -25,6 +26,7 @@ const SettingsPage = async ({params}:SettingsPageProps) => {
             <BaseSettings _baseInfo={baseInfo}/>
             <Education educations={educations}/>
             <Projects projects={projects}/>
+            <UploadAvatar/>
         </div>
     );
 };

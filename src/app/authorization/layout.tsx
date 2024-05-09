@@ -5,12 +5,13 @@ import SpinLoading from "@/components/SpinLoading";
 import {getServerSession} from "next-auth";
 import {permanentRedirect} from "next/navigation";
 import {Metadata} from "next";
+import {authConfig} from "@/configs/auth";
 export const metadata: Metadata = {
     robots: 'noindex, nofollow',
     title: 'Pretty Portfolio - Авторизация'
 }
 const AuthorizationLayout = async ({children} : {children: React.ReactNode}) => {
-    const session = await getServerSession()
+    const session = await getServerSession(authConfig)
     if(session){
         permanentRedirect(`/`)
     }

@@ -34,7 +34,7 @@ const MenuProfile = ({id, baseInfo}:{id: string, baseInfo: BaseInfo}) => {
                         name={!baseInfo.name && !baseInfo.surname ? 'Без имени' : baseInfo.name + " " + baseInfo.surname}
                         description={baseInfo.description}
                         avatarProps={{
-                            src: `/avatar/${baseInfo.id}`
+                            src:`https://res.cloudinary.com/dqggb6cgz/image/upload/v${new Date().getTime()}/avatars/${id}`
                         }}
                     />
                 </ListboxItem>

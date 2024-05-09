@@ -35,8 +35,7 @@ export const signUp = async (_login: string, _email: string, _password: string) 
             password: await argon2.hash(_password)
         }
     })
-    redirect(`/profiles/${user.id}`)
     return {
-        status: 'success'
+        status: 'success',  message: `/profiles/${user.id}`
     }
 }
