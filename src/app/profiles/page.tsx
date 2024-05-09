@@ -9,7 +9,7 @@ const ProfilesPage = async () => {
             {previews.length > 0 ? previews.map(preview=> {
                 if(!preview.description || !preview.id || !preview.birthDay)return;
 
-                return <PreviewPortfolio key={preview.id} description={preview.description} id={preview.id} birthDay={preview.birthDay}/>
+                return <PreviewPortfolio name={preview.name || "Без имени"} surname={preview.surname || ""} key={preview.id} description={preview.description} id={preview.id} birthDay={preview.birthDay}/>
             })
                 :
                 <p>Не одного портфолио пока нету</p>

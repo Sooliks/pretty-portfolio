@@ -1,16 +1,19 @@
 
 import React from 'react';
-import {Card} from "@nextui-org/react";
+import {Card, Divider} from "@nextui-org/react";
 import Image from "next/image";
+import Link from "next/link";
 
 
 type PreviewPortfolioProps = {
     description: string
     id: string
-    birthDay: Date
+    birthDay: Date,
+    name: string
+    surname: string
 }
 
-const PreviewPortfolio = ({description, id, birthDay}: PreviewPortfolioProps) => {
+const PreviewPortfolio = ({description, id, birthDay,name,surname}: PreviewPortfolioProps) => {
     const calculateAge = (birthDate: Date): number => {
         const today: Date = new Date();
         let age: number = today.getFullYear() - birthDate.getFullYear();
@@ -32,13 +35,15 @@ const PreviewPortfolio = ({description, id, birthDay}: PreviewPortfolioProps) =>
         }
     }
     return (
-        <Card className={'p-4 flex flex-col'}>
+        <Card className={'p-4 flex flex-col mr-2'} as={Link} href={`/profiles/${id}`}>
             <Image
                 src={`https://res.cloudinary.com/dqggb6cgz/image/upload/v${new Date().getTime()}/avatars/${id}`}
                 alt={'avatar'}
                 width={200}
                 height={180}
             />
+            <p>{name + " " + surname}</p>
+            <Divider orientation={"horizontal"}/>
             <p>{description}</p>
             <p>{calculateAgeString(calculateAge(birthDay))}</p>
         </Card>
