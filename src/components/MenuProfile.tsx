@@ -4,8 +4,9 @@ import {Listbox, ListboxItem} from "@nextui-org/react";
 import {signOut, useSession} from "next-auth/react";
 import {usePathname, useRouter} from "next/navigation";
 import {User} from "@nextui-org/user";
+import {BaseInfo} from "@/types/base-info";
 
-const MenuProfile = ({id}:{id: string}) => {
+const MenuProfile = ({id, baseInfo}:{id: string, baseInfo: BaseInfo}) => {
     const session = useSession();
     const {push} = useRouter();
     const pathname = usePathname()
@@ -29,10 +30,10 @@ const MenuProfile = ({id}:{id: string}) => {
             >
                 <ListboxItem key={""}>
                     <User
-                        name={session.data?.user.login}
-                        description={session.data?.user.description}
+                        name={!baseInfo.name && !baseInfo.surname ? 'Без имени' : baseInfo.name + " " + baseInfo.surname}
+                        description={baseInfo.description}
                         avatarProps={{
-                            src: `/avatars/${session.data?.user.login}`
+                            src: `/avatar/${baseInfo.id}`
                         }}
                     />
                 </ListboxItem>

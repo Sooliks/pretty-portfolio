@@ -1,7 +1,7 @@
 'use client'
 import React, {useState} from 'react';
 import InputForm from "@/components/ui/InputForm";
-import {Button} from "@nextui-org/react";
+import {Button, Input} from "@nextui-org/react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {signIn} from "next-auth/react";
 import {useRouter} from "next/navigation";
@@ -41,65 +41,70 @@ const RegistrationPage = () => {
     }
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={"w-3/5"}>
-            <InputForm
-                error={errors.email?.message}
+            <Input
+                isInvalid={!!errors.email?.message}
+                errorMessage={errors.email?.message}
                 type={"email"}
                 placeholder={'Email'}
-                form={{
-                    ...register('email', {
-                        required: 'Пожалуйста введите email',
-                        pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: 'Введите корректный email'
-                        }
-                    })
-                }}
+                {...register('email', {
+                    required: 'Пожалуйста введите email',
+                    pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: 'Введите корректный email'
+                    }
+                })}
+                className={'mt-4'}
             />
-            <InputForm
-                error={errors.login?.message}
+            <Input
+                isInvalid={!!errors.login?.message}
+                errorMessage={errors.login?.message}
                 type={"login"}
                 placeholder={'Логин'}
-                form={{
-                    ...register('login', {
-                        required: 'Пожалуйста введите логин',
-                        pattern: {
-                            value: /^(?=.*[A-Za-z0-9]$)[A-Za-z][A-Za-z\d.-]{0,19}$/,
-                            message: 'Введите корректный логин'
+                {...register('login', {
+                    required: 'Пожалуйста введите логин',
+                    pattern: {
+                        value: /^(?=.*[A-Za-z0-9]$)[A-Za-z][A-Za-z\d.-]{0,19}$/,
+                        message: 'Введите корректный логин'
+                    },
+                    validate: () => {
+                        if (watch('login').length <= 5) {
+                            return 'Логин должен быть больше 5-ти символов';
                         }
-                    })
-                }}
+                    }
+                })}
+                className={'mt-4'}
             />
-            <InputForm
-                error={errors.password?.message}
+            <Input
+                isInvalid={!!errors.password?.message}
+                errorMessage={errors.password?.message}
                 type={"password"}
                 placeholder={'Пароль'}
-                form={{
-                    ...register('password', {
-                        required: 'Пожалуйста введите пароль',
-                        validate: () => {
-                            if (watch('password').length <= 8) {
-                                return 'Пароль должен быть больше 8-ми символов';
-                            }
+                {...register('password', {
+                    required: 'Пожалуйста введите пароль',
+                    validate: () => {
+                        if (watch('password').length <= 8) {
+                            return 'Пароль должен быть больше 8-ми символов';
                         }
-                    })
-                }}
+                    }
+                })}
+                className={'mt-4'}
             />
-            <InputForm
-                error={errors.secondPassword?.message}
+            <Input
+                isInvalid={!!errors.secondPassword?.message}
+                errorMessage={errors.secondPassword?.message}
                 type={"password"}
                 placeholder={'Повторите пароль'}
-                form={{
-                    ...register('secondPassword', {
-                        required: 'Пожалуйста повторите пароль',
-                        validate: (value: string) => {
-                            if (watch('password') !== value) {
-                                return 'Пароли не совпадают';
-                            }
+                {...register('secondPassword', {
+                    required: 'Пожалуйста повторите пароль',
+                    validate: (value: string) => {
+                        if (watch('password') !== value) {
+                            return 'Пароли не совпадают';
                         }
-                    })
-                }}
+                    }
+                })}
+                className={'mt-4'}
             />
-            <Button className={"mt-2"} color={"primary"} type={'submit'} isLoading={isLoading}>{'Зарегистрироваться'}</Button>
+            <Button className={"mt-4"} color={"primary"} type={'submit'} isLoading={isLoading}>{'Зарегистрироваться'}</Button>
         </form>
     );
 };

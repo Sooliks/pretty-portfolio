@@ -1,6 +1,7 @@
 import React from 'react';
 import MenuProfile from "@/components/MenuProfile";
 import {Metadata} from "next";
+import {getBaseInfo} from "@/server-actions/profiles";
 
 type ProfileLayoutProps = {
     params: {
@@ -16,10 +17,11 @@ export async function generateMetadata({params: {id}}: {params: { id: string }})
         keywords: [id, 'профиль','пользователь']
     }
 }
-const ProfileLayout = ({params, children}: ProfileLayoutProps) => {
+const ProfileLayout = async ({params, children}: ProfileLayoutProps) => {
+    const baseInfo = await getBaseInfo(params.id);
     return (
         <div className={'flex flex-row p-4 w-screen h-full'}>
-            <MenuProfile id={params.id}/>
+            <MenuProfile baseInfo={baseInfo} id={params.id}/>
             {children}
         </div>
     );
