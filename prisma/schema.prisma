@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt   DateTime    @default(now())
+  login       String      @unique
+  email       String      @unique
+  password    String
+  role        Role        @default(USER)
+  name        String?
+  surname     String?
+  patronymic  String?
+  description String?
+  projects    Project[]
+  educations  Education[]
+  skills      Skill[]
+  birthDay    DateTime?
+}
+
+model Project {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  author            User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId          String   @db.ObjectId
+  title             String?
+  description       String?
+  technologies_used String?
+  link              String?
+  demo_link         String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Education {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId    String   @db.ObjectId
+  institution String
+  degree      String
+  major       String
+  start_date  DateTime
+  end_date    DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Skill {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId String @db.ObjectId
+  name     String
+}
+
+enum Role {
+  USER
+  ADMIN
+}
