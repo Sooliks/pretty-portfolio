@@ -40,8 +40,8 @@ const MenuProfile = ({id, baseInfo}:{id: string, baseInfo: BaseInfo}) => {
                 </ListboxItem>
                 <ListboxItem key={`/profiles/${id}`}>Портфолио</ListboxItem>
                 <ListboxItem key={`/profiles/${id}/contacts`}>Контакты</ListboxItem>
-                <ListboxItem className={session.data && session.data.user.id !== id ? 'hidden' : undefined} key={`/profiles/${id}/settings`}>Настройки</ListboxItem>
-                <ListboxItem key={`signOut`} className={session.data && session.data.user.id !== id ? 'hidden text-danger-400' : undefined} color="danger">
+                <ListboxItem className={session?.data?.user.id !== id ? 'hidden' : undefined} key={`/profiles/${id}/settings`}>Настройки</ListboxItem>
+                <ListboxItem key={`signOut`} className={session?.data?.user.id !== id ? 'hidden text-danger-400' : undefined} color="danger">
                     Выйти из аккаунта
                 </ListboxItem>
             </Listbox>
