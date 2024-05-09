@@ -1,6 +1,5 @@
 'use client'
 import React, {useState} from 'react';
-import InputForm from "@/components/ui/InputForm";
 import {Button, Input} from "@nextui-org/react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {signIn} from "next-auth/react";
@@ -32,7 +31,7 @@ const RegistrationPage = () => {
                 redirect: false
             })
             if(r && !r.error){
-
+                replace(res.message);
             }
         }else {
             alert(res.message);

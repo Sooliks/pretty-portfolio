@@ -1,6 +1,6 @@
 'use client'
 import React, {useState} from 'react';
-import {Button} from "@nextui-org/react";
+import {Button, Card} from "@nextui-org/react";
 import {getSignature} from "@/server-actions/cloudinary";
 import {useSession} from "next-auth/react";
 
@@ -30,13 +30,13 @@ const UploadAvatar = () => {
         });
     }
     return (
-        <div>
+        <Card className={'p-4 mr-4 mb-4'}>
             <h1>Аватар</h1>
             {selectedImage && (
                 <div>
                     <img
                         alt="not found"
-                        width={"250px"}
+                        width={"220px"}
                         src={URL.createObjectURL(selectedImage)}
                     />
                     <br />
@@ -55,7 +55,7 @@ const UploadAvatar = () => {
                     setSelectedImage(event?.target?.files[0]);
                 }}
             />
-        </div>
+        </Card>
     )
 };
 

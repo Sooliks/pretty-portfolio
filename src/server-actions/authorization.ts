@@ -1,8 +1,6 @@
 'use server'
 import * as argon2 from "argon2";
 import prisma from "@/configs/prisma";
-import {redirect} from "next/navigation";
-
 export const signUp = async (_login: string, _email: string, _password: string) => {
     let searchedUser = await prisma.user.findFirst({
         where: {
