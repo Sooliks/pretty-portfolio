@@ -5,7 +5,7 @@ import PreviewPortfolio from "@/components/PreviewPortfolio";
 const ProfilesPage = async () => {
     const previews = await getPreviewsPortfolio();
     return (
-        <div className={'flex flex-row p-4'}>
+        <div className={'flex flex-row p-4 flex-wrap'}>
             {previews.length > 0 ? previews.map(preview=> {
                 if(!preview.description || !preview.id || !preview.birthDay)return;
 

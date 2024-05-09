@@ -19,6 +19,7 @@
 body, html {
   color: rgb(var(--foreground-rgb));
   background-color: black;
+  overflow-x: hidden !important;
 }
 .loader{
   position: absolute;

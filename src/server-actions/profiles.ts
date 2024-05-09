@@ -75,7 +75,13 @@ export const saveEducation = async (education: EducationType) => {
     if(education.id) {
         await prisma.education.update({
             where: {id: education.id, authorId: session.user.id},
-            data: education
+            data: {
+                institution: education.institution,
+                degree: education.degree,
+                major: education.major,
+                start_date: education.start_date,
+                end_date: education.end_date
+            }
         })
     }else {
         await prisma.education.create({

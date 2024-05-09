@@ -21,10 +21,9 @@ const SettingsPage = async ({params}:SettingsPageProps) => {
     const baseInfo = await getBaseInfo(params.id);
     const projects = await getProjects(params.id);
     return (
-        <div className={'flex flex-row'}>
+        <div className={'flex flex-row flex-wrap'}>
             <BaseSettings _baseInfo={baseInfo}/>
             <Education educations={educations}/>
-            <br/>
             <Projects projects={projects}/>
         </div>
     );

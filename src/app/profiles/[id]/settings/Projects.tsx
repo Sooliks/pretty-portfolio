@@ -14,7 +14,7 @@ const Projects = ({projects}:{projects: ProjectType[]}) => {
         }).finally(()=>setIsLoading(false))
     }
     return (
-        <Card className={'flex flex-col p-4 mr-4'}>
+        <Card className={'flex flex-col p-4 mr-4 min-w-[280px] mb-4'}>
             <h2>Проекты</h2>
             <Accordion>
                 {projects.map((project, index)=>

@@ -17,7 +17,7 @@ const BaseSettings = ({_baseInfo}:{_baseInfo: BaseInfo}) => {
     }
     if(!baseInfo)return;
     return (
-        <Card className={'flex flex-col p-4 mr-4 w-[280px]'}>
+        <Card className={'flex flex-col p-4 mr-4 w-[280px] mb-4'}>
             <h2>Основная информация</h2>
             <Input className={'mt-2'} label={'Фамилия'} value={baseInfo?.surname || ""} onChange={(e)=>setBaseInfo({...baseInfo, surname: e.target.value})}/>
             <Input className={'mt-2'} label={'Имя'} value={baseInfo?.name || ""} onChange={(e)=>setBaseInfo({...baseInfo, name: e.target.value})}/>

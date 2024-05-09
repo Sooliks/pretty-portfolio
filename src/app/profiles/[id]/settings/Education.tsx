@@ -8,7 +8,7 @@ const Education = ({educations}:{educations: EducationType[]}) => {
     const [withoutEditEducation,setWithoutEditEducation] = useState<EducationType[]>(educations);
     const [isLoading,setIsLoading] = useState<boolean>(false);
     return (
-        <Card className={'flex flex-col p-4 mr-4 w-[280px]'}>
+        <Card className={'flex flex-col p-4 mr-4 w-[280px] mb-4'}>
             <h2>Образования</h2>
             <Accordion>
                 <AccordionItem key="1" aria-label="Образование 1" title="Образование 1">
