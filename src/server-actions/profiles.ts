@@ -21,7 +21,8 @@ export const getPreviewsPortfolio = async () => {
             birthDay: {not: null},
             name: {not: null},
             surname: {not: null},
-        }
+        },
+        orderBy: [{id: 'desc'}]
     })
     return previews;
 }
