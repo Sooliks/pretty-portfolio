@@ -6,6 +6,7 @@ import {Education} from ".prisma/client";
 import {authConfig} from "@/configs/auth";
 import {EducationType} from "@/types/education";
 import {ProjectType} from "@/types/project";
+import {revalidatePath} from "next/cache";
 export const getPreviewsPortfolio = async () => {
     const previews = await prisma.user.findMany({
         select: {
@@ -112,5 +113,30 @@ export const addProject = async () => {
             author: {connect: {id: session.user.id}}
         }
     })
+    revalidatePath(`/profiles/${session.user.id}/settings`)
     return project as ProjectType;
 }
+export const saveProject = async (project: ProjectType) => {
+    const session = await getServerSession(authConfig);
+    if(!session)return {status: 'error', message: 'Произошла ошибка, обновите страницу!'};
+    await prisma.project.update({
+        where: {id: project.id},
+        data: {
+            title: project.title || null,
+            description: project.description || null,
+            technologies_used: project.technologies_used || null,
+            link: project.link || null,
+            demo_link: project.demo_link || null
+        }
+    })
+    revalidatePath(`/profiles/${session.user.id}/settings`)
+}
+export const deleteProject = async (idProject: string) => {
+    const session = await getServerSession(authConfig);
+    if(!session)return {status: 'error', message: 'Произошла ошибка, обновите страницу!'};
+    await prisma.project.delete({
+        where: {id: idProject, authorId: session.user.id}
+    })
+    revalidatePath(`/profiles/${session.user.id}/settings`)
+}
+

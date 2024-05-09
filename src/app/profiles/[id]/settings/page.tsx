@@ -24,6 +24,7 @@ const SettingsPage = async ({params}:SettingsPageProps) => {
         <div className={'flex flex-row'}>
             <BaseSettings _baseInfo={baseInfo}/>
             <Education educations={educations}/>
+            <br/>
             <Projects projects={projects}/>
         </div>
     );
