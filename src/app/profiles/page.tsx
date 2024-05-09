@@ -6,7 +6,7 @@ const ProfilesPage = async () => {
     const previews = await getPreviewsPortfolio();
     return (
         <div className={'flex flex-row p-4 flex-wrap'}>
-            {previews.length > 0 ? previews.map(preview=> {
+            {previews.length > 0 ? previews.map((preview: any)=> {
                 if(!preview.description || !preview.id || !preview.birthDay)return;
 
                 return <PreviewPortfolio name={preview.name || "Без имени"} surname={preview.surname || ""} key={preview.id} description={preview.description} id={preview.id} birthDay={preview.birthDay}/>
