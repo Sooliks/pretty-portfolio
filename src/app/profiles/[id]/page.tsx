@@ -15,7 +15,6 @@ const ProfilePage = async ({params} : ProfilePageProps) => {
     }
     return (
         <div>
-            портфолио {params.id}
             <Textarea
                 isReadOnly
                 label="Описание"

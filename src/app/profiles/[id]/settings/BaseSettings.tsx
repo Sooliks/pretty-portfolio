@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {saveBaseInfo} from "@/server-actions/profiles";
 import {BaseInfo} from "@/types/base-info";
 import {Button, Card, DateInput, Input} from "@nextui-org/react";
+import {parseDate} from "@internationalized/date";
 
 const BaseSettings = ({_baseInfo}:{_baseInfo: BaseInfo}) => {
     const [baseInfo,setBaseInfo] = useState<BaseInfo>(_baseInfo);
@@ -14,6 +15,12 @@ const BaseSettings = ({_baseInfo}:{_baseInfo: BaseInfo}) => {
         saveBaseInfo(baseInfo).then(data=>{
 
         }).finally(()=>setIsLoading(false))
+    }
+    function convertToDateValue(date: Date): string {
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Добавляем ведущий ноль, если месяц < 10
+        const day = date.getDate().toString().padStart(2, '0'); // Добавляем ведущий ноль, если день < 10
+        return `${year}-${month}-${day}`;
     }
     if(!baseInfo)return;
     return (
@@ -27,6 +34,7 @@ const BaseSettings = ({_baseInfo}:{_baseInfo: BaseInfo}) => {
                 onChange={(e)=>setBaseInfo({...baseInfo, birthDay: new Date(e.toDate(Intl.DateTimeFormat().resolvedOptions().timeZone))})}
                 label={"Дата рождения"}
                 className="max-w-sm mt-2"
+                defaultValue={parseDate(convertToDateValue(_baseInfo.birthDay || new Date()))}
             />
             <Button
                 isLoading={isLoading}

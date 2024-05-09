@@ -41,7 +41,7 @@ const UploadAvatar = () => {
                     />
                     <br />
                     <Button onClick={() => setSelectedImage(undefined)}>Удалить</Button>
-                    {selectedImage && <Button isLoading={isLoading} onClick={handleUpload}>Загрузить</Button>}
+                    {selectedImage && <Button className={'ml-2'} isLoading={isLoading} onClick={handleUpload}>Загрузить</Button>}
                 </div>
             )}
             <br />
