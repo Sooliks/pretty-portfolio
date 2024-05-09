@@ -5,6 +5,7 @@ import {getServerSession} from "next-auth";
 import {Education} from ".prisma/client";
 import {authConfig} from "@/configs/auth";
 import {EducationType} from "@/types/education";
+import {ProjectType} from "@/types/project";
 export const getPreviewsPortfolio = async () => {
     const previews = await prisma.user.findMany({
         select: {
@@ -54,7 +55,6 @@ export const getEducations = async (authorId: string) => {
 export const saveBaseInfo = async (baseInfo: BaseInfo) => {
     const session = await getServerSession(authConfig);
     if(!session)return {status: 'error', message: 'Произошла ошибка, обновите страницу!'};
-    console.log(session.user.id)
     await prisma.user.update({
         where: {id: session.user.id},
         data: {
@@ -89,4 +89,28 @@ export const saveEducation = async (education: EducationType) => {
         })
     }
     return {status: 'success', message: 'Сохранено!'};
+}
+export const getProjects = async (authorId: string) => {
+    const projects = await prisma.project.findMany({
+        where: {authorId: authorId},
+        select: {
+            title: true,
+            description: true,
+            technologies_used: true,
+            link: true,
+            demo_link: true,
+            id: true
+        }
+    })
+    return projects as ProjectType[];
+}
+export const addProject = async () => {
+    const session = await getServerSession(authConfig);
+    if(!session)return {status: 'error', message: 'Произошла ошибка, обновите страницу!'};
+    const project = await prisma.project.create({
+        data: {
+            author: {connect: {id: session.user.id}}
+        }
+    })
+    return project as ProjectType;
 }

@@ -1,19 +1,13 @@
 'use client'
-import React, {useEffect, useState} from 'react';
-import {getBaseInfo, saveBaseInfo} from "@/server-actions/profiles";
+import React, {useState} from 'react';
+import {saveBaseInfo} from "@/server-actions/profiles";
 import {BaseInfo} from "@/types/base-info";
 import {Button, Card, DateInput, Input} from "@nextui-org/react";
 
-const BaseSettings = ({id}:{id: string}) => {
-    const [baseInfo,setBaseInfo] = useState<BaseInfo>();
-    const [withoutEditBaseInfo,setWithoutEditBaseInfo] = useState<BaseInfo>();
+const BaseSettings = ({_baseInfo}:{_baseInfo: BaseInfo}) => {
+    const [baseInfo,setBaseInfo] = useState<BaseInfo>(_baseInfo);
+    const [withoutEditBaseInfo,setWithoutEditBaseInfo] = useState<BaseInfo>(baseInfo);
     const [isLoading,setIsLoading] = useState<boolean>(false);
-    useEffect(()=>{
-        getBaseInfo(id).then(data=>{
-            setBaseInfo(data)
-            setWithoutEditBaseInfo(data);
-        });
-    },[])
     const handleSave = () => {
         setIsLoading(true);
         if(baseInfo)
@@ -22,9 +16,8 @@ const BaseSettings = ({id}:{id: string}) => {
         }).finally(()=>setIsLoading(false))
     }
     if(!baseInfo)return;
-
     return (
-        <Card className={'flex flex-col p-4 mr-4'}>
+        <Card className={'flex flex-col p-4 mr-4 w-[280px]'}>
             <h2>Основная информация</h2>
             <Input className={'mt-2'} label={'Фамилия'} value={baseInfo?.surname || ""} onChange={(e)=>setBaseInfo({...baseInfo, surname: e.target.value})}/>
             <Input className={'mt-2'} label={'Имя'} value={baseInfo?.name || ""} onChange={(e)=>setBaseInfo({...baseInfo, name: e.target.value})}/>
