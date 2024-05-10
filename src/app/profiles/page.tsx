@@ -2,6 +2,9 @@ import React from 'react';
 import {getPreviewsPortfolio} from "@/server-actions/profiles";
 import PreviewPortfolio from "@/components/PreviewPortfolio";
 
+
+export const revalidate = 40;
+
 const ProfilesPage = async () => {
     const previews = await getPreviewsPortfolio();
     return (
