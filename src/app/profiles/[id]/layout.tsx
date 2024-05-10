@@ -20,7 +20,7 @@ export async function generateMetadata({params: {id}}: {params: { id: string }})
 const ProfileLayout = async ({params, children}: ProfileLayoutProps) => {
     const baseInfo = await getBaseInfo(params.id);
     return (
-        <div className={'flex flex-row p-4 w-screen h-full'}>
+        <div className={'flex flex-row p-4 w-screen h-full flex-wrap'}>
             <MenuProfile baseInfo={baseInfo} id={params.id}/>
             {children}
         </div>

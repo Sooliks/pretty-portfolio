@@ -23,7 +23,7 @@ const MenuProfile = ({id, baseInfo}:{id: string, baseInfo: BaseInfo}) => {
         }
     }
     return (
-        <div className={'mr-4 w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100'}>
+        <div className={'mr-4 w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100 mb-4'}>
             <Listbox
                 aria-label="Actions"
                 onAction={handleAction}
