@@ -7,6 +7,7 @@ import EducationItem from "@/components/EducationItem";
 
 const Contacts = ({_contacts}:{_contacts: Contact[]}) => {
     const [contacts,setContacts] = useState<Contact[]>(_contacts);
+    const [isOpen,setIsOpen] = useState<boolean>(false)
     const handleAdd = () => {
         setContacts([...contacts, {
             name: "",
@@ -25,8 +26,13 @@ const Contacts = ({_contacts}:{_contacts: Contact[]}) => {
     return (
         <Card className={'p-4 flex flex-col'}>
             <h2>Контакты</h2>
-            <Accordion>
-                <AccordionItem key="1" >
+            <Accordion variant="bordered">
+                <AccordionItem
+                    onPressStart={(e)=>setIsOpen(prev=>!prev)}
+                    isCompact
+                    title={isOpen ? 'Свернуть' : 'Развернуть'}
+                    key="1"
+                >
                     {contacts.map((contact, index)=>
                         <ContactItem onDelete={()=>removeItem(index)} _contact={contact} key={contact.id}/>
                     )}
