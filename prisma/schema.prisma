@@ -20,8 +20,8 @@ model User {
   description String?
   projects    Project[]
   educations  Education[]
-  skills      Skill[]
   birthDay    DateTime?
+  contacts    Contact[]
 }
 
 model Project {
@@ -50,11 +50,12 @@ model Education {
   updatedAt   DateTime @updatedAt
 }
 
-model Skill {
+model Contact {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId String @db.ObjectId
   name     String
+  url      String
 }
 
 enum Role {

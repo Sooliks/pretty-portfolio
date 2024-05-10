@@ -64,7 +64,7 @@ const ProfilePage = async ({params} : ProfilePageProps) => {
                 <h2 className={'text-2xl'}>Проекты</h2>
                 <Divider className={'my-4'}/>
                 <div className={'flex flex-row flex-wrap'}>
-                    {educations.length > 0 ? projects.map(project =>
+                    {projects.length > 0 ? projects.map(project =>
                             <Project key={project.id} project={project}/>
                         )
                         :

@@ -2,11 +2,11 @@
 import prisma from "@/configs/prisma";
 import {BaseInfo} from "@/types/base-info";
 import {getServerSession} from "next-auth";
-import {Education} from ".prisma/client";
 import {authConfig} from "@/configs/auth";
 import {EducationType} from "@/types/education";
 import {ProjectType} from "@/types/project";
 import {revalidatePath} from "next/cache";
+import {Contact} from ".prisma/client";
 export const getPreviewsPortfolio = async () => {
     const previews = await prisma.user.findMany({
         select: {
@@ -145,5 +145,41 @@ export const deleteProject = async (idProject: string) => {
         where: {id: idProject, authorId: session.user.id}
     })
     revalidatePath(`/profiles/${session.user.id}/settings`)
+}
+export const getContacts = async (userId: string) => {
+    const contacts = await prisma.contact.findMany({
+        where: {authorId: userId}
+    })
+    return contacts;
+}
+export const deleteContact = async (idContact: string) => {
+    const session = await getServerSession(authConfig);
+    if(!session)return {status: 'error', message: 'Произошла ошибка, обновите страницу!'};
+    await prisma.contact.delete({
+        where: {id: idContact, authorId: session.user.id}
+    })
+    revalidatePath(`/profiles/${session.user.id}/settings`)
+}
+export const saveContact = async (contact: Contact) => {
+    const session = await getServerSession(authConfig);
+    if(!session)return {status: 'error', message: 'Произошла ошибка, обновите страницу!'};
+    if(contact.id) {
+        await prisma.contact.update({
+            where: {id: contact.id, authorId: session.user.id},
+            data: {
+                name: contact.name,
+                url: contact.url
+            }
+        })
+    }else {
+        await prisma.contact.create({
+            data: {
+                name: contact.name,
+                url: contact.url,
+                author: {connect: {id: session.user.id}}
+            }
+        })
+    }
+    return {status: 'success', message: 'Сохранено!'};
 }
 
