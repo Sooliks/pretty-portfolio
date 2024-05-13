@@ -4,7 +4,6 @@ import {saveBaseInfo} from "@/server-actions/profiles";
 import {BaseInfo} from "@/types/base-info";
 import {Button, Card, DateInput, Input} from "@nextui-org/react";
 import {parseDate} from "@internationalized/date";
-
 const BaseSettings = ({_baseInfo}:{_baseInfo: BaseInfo}) => {
     const [baseInfo,setBaseInfo] = useState<BaseInfo>(_baseInfo);
     const [withoutEditBaseInfo,setWithoutEditBaseInfo] = useState<BaseInfo>(baseInfo);

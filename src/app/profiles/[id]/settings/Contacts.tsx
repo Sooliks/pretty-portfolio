@@ -3,8 +3,6 @@ import React, {useState} from 'react';
 import {Contact} from ".prisma/client";
 import {Accordion, AccordionItem, Button, Card} from "@nextui-org/react";
 import ContactItem from "@/components/ContactItem";
-import EducationItem from "@/components/EducationItem";
-
 const Contacts = ({_contacts}:{_contacts: Contact[]}) => {
     const [contacts,setContacts] = useState<Contact[]>(_contacts);
     const [isOpen,setIsOpen] = useState<boolean>(false)

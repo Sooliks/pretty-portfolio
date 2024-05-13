@@ -1,6 +1,5 @@
 import {Button, Card} from "@nextui-org/react";
 import Link from "next/link";
-
 export default function Home() {
     return (
         <main className="flex flex-col items-center justify-center h-full">

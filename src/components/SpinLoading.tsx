@@ -8,5 +8,4 @@ const SpinLoading: React.FC = () => {
         </div>
     );
 };
-
 export default SpinLoading;

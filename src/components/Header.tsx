@@ -4,8 +4,6 @@ import {Button, Navbar, NavbarBrand, NavbarContent, NavbarItem} from "@nextui-or
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {useSession} from "next-auth/react";
-
-
 type HeaderProps = {
     links: {title: string, path: string}[]
 }

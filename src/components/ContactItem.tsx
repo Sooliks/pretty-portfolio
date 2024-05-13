@@ -3,8 +3,6 @@ import React, {useState} from 'react';
 import {Contact} from ".prisma/client";
 import {Button, Input} from "@nextui-org/react";
 import {deleteContact, saveContact} from "@/server-actions/profiles";
-
-
 const ContactItem = ({_contact, onDelete}:{_contact: Contact, onDelete: () => void}) => {
     const [contact,setContact] = useState(_contact);
     const [isLoadingSave,setIsLoadingSave] = useState<boolean>(false);

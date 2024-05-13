@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 import {Button, Card} from "@nextui-org/react";
 import {getSignature} from "@/server-actions/cloudinary";
 import {useSession} from "next-auth/react";
-
 const UploadAvatar = () => {
     const [selectedImage, setSelectedImage] = useState<File | undefined>();
     const [isLoading,setIsLoading] = useState<boolean>(false)

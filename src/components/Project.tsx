@@ -4,8 +4,6 @@ import {Card, Divider} from "@nextui-org/react";
 import {Textarea} from "@nextui-org/input";
 import {Chip} from "@nextui-org/chip";
 import Link from "next/link";
-
-
 const Project = ({project}:{project: ProjectType}) => {
     const technologies_used = project.technologies_used.split(',');
     return (

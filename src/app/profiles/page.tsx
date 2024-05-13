@@ -1,10 +1,12 @@
 import React from 'react';
 import {getPreviewsPortfolio} from "@/server-actions/profiles";
 import PreviewPortfolio from "@/components/PreviewPortfolio";
-
-
+import {Metadata} from "next";
 export const revalidate = 40;
-
+export const metadata: Metadata = {
+    title: "Pretty Portfolio - Студенты",
+    description: "Site for your portfolio",
+};
 const ProfilesPage = async () => {
     const previews = await getPreviewsPortfolio();
     return (

@@ -5,7 +5,6 @@ import {signOut, useSession} from "next-auth/react";
 import {usePathname, useRouter} from "next/navigation";
 import {User} from "@nextui-org/user";
 import {BaseInfo} from "@/types/base-info";
-
 const MenuProfile = ({id, baseInfo}:{id: string, baseInfo: BaseInfo}) => {
     const session = useSession();
     const {push} = useRouter();

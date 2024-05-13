@@ -1,12 +1,9 @@
 'use client'
 import React, {useState} from 'react';
-import {Button, CalendarDate, DatePicker, DateValue, Input} from "@nextui-org/react";
+import {Button, DatePicker, Input} from "@nextui-org/react";
 import {EducationType} from "@/types/education";
 import {saveEducation} from "@/server-actions/profiles";
 import {parseDate} from "@internationalized/date";
-
-
-
 const EducationItem = ({_education}:{_education: EducationType | undefined}) => {
     const [isLoading,setIsLoading] = useState(false);
     const [education,setEducation] = useState<EducationType>(_education || {

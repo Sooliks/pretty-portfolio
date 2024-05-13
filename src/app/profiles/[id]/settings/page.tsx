@@ -8,8 +8,6 @@ import {getBaseInfo, getContacts, getEducations, getProjects} from "@/server-act
 import Projects from "@/app/profiles/[id]/settings/Projects";
 import UploadAvatar from "@/app/profiles/[id]/settings/UploadAvatar";
 import Contacts from "@/app/profiles/[id]/settings/Contacts";
-
-
 type SettingsPageProps = {
     params: {
         id: string

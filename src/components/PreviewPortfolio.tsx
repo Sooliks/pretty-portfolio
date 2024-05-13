@@ -1,10 +1,7 @@
-
 import React from 'react';
 import {Card, Divider} from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
-
-
 type PreviewPortfolioProps = {
     description: string
     id: string
@@ -12,7 +9,6 @@ type PreviewPortfolioProps = {
     name: string
     surname: string
 }
-
 const PreviewPortfolio = ({description, id, birthDay,name,surname}: PreviewPortfolioProps) => {
     const calculateAge = (birthDate: Date): number => {
         const today: Date = new Date();

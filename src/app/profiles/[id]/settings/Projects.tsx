@@ -4,7 +4,6 @@ import {Accordion, AccordionItem, Button, Card} from "@nextui-org/react";
 import {ProjectType} from "@/types/project";
 import ProjectItem from "@/components/ProjectItem";
 import {addProject} from "@/server-actions/profiles";
-
 const Projects = ({projects}:{projects: ProjectType[]}) => {
     const [isLoading,setIsLoading] = useState<boolean>(false);
     const handleAdd = () => {

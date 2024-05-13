@@ -2,7 +2,6 @@ import React from 'react';
 import {getContacts} from "@/server-actions/profiles";
 import Link from "next/link";
 import {Card, Divider} from "@nextui-org/react";
-
 type InformationPageProps = {
     params: {
         id: string

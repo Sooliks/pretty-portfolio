@@ -3,8 +3,6 @@ import {getBaseInfo, getEducations, getProjects} from "@/server-actions/profiles
 import {Textarea} from "@nextui-org/input";
 import {Card, Divider} from "@nextui-org/react";
 import Project from "@/components/Project";
-
-
 type ProfilePageProps = {
     params: {
         id: string
@@ -14,9 +12,6 @@ const ProfilePage = async ({params} : ProfilePageProps) => {
     const baseInfo = await getBaseInfo(params.id);
     const educations = await getEducations(params.id);
     const projects = await getProjects(params.id);
-    if(!baseInfo){
-        return <p>Это портфолио не готово</p>
-    }
     return (
         <div className={'flex flex-row flex-wrap'}>
             <Card className={'p-4 mr-2 max-sm:mt-4'}>

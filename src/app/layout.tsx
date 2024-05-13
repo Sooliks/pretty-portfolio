@@ -3,12 +3,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
 import Header from "@/components/Header";
-
 const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
     title: "Pretty Portfolio",
-    description: "Best site for your portfolio",
+    description: "Site for your portfolio",
 };
 export default function RootLayout({children,}: Readonly<{ children: React.ReactNode}>) {
     return (

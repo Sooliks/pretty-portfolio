@@ -5,7 +5,6 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {signIn} from "next-auth/react";
 import {useRouter} from "next/navigation";
 import {signUp} from "@/server-actions/authorization";
-
 type RegisterValues = {
     email: string
     password: string
