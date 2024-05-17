@@ -17,9 +17,7 @@ export const authConfig: AuthOptions = {
                 });
                 if(!searchedUser)return null;
                 const isVerify = await argon2.verify(searchedUser.password, credentials.password)
-                if(!isVerify){
-                    return null;
-                }
+                if(!isVerify){return null;}
                 const {password, ...userWithoutPass} = searchedUser;
                 return userWithoutPass as User;
             }

@@ -2,6 +2,8 @@ import React from 'react';
 import MenuProfile from "@/components/MenuProfile";
 import {Metadata} from "next";
 import {getBaseInfo} from "@/server-actions/profiles";
+import {getServerSession} from "next-auth";
+import {authConfig} from "@/configs/auth";
 type ProfileLayoutProps = {
     params: {
         id: string
@@ -20,8 +22,11 @@ export async function generateMetadata({params: {id}}: {params: {id: string}}): 
 export const revalidate = 40;
 const ProfileLayout = async ({params, children}: ProfileLayoutProps) => {
     const baseInfo = await getBaseInfo(params.id);
-    if(!baseInfo){
-        return <p>Это портфолио не готово</p>
+    const session = await getServerSession(authConfig);
+    if(!session || params.id !== session.user.id) {
+        if (!baseInfo) {
+            return <p>Это портфолио не готово</p>
+        }
     }
     return (
         <div className={'flex flex-row p-4 w-screen h-full flex-wrap'}>

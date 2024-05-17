@@ -22,11 +22,11 @@ const ProfilePage = async ({params} : ProfilePageProps) => {
                     variant="bordered"
                     labelPlacement="outside"
                     defaultValue={
-                        "Имя: " + baseInfo.name + " \n" +
-                        "Фамилия: " + baseInfo.surname + " \n" +
-                        "Отчество: " + baseInfo.patronymic + " \n" +
-                        "Дата рождения: " + baseInfo.birthDay?.toLocaleDateString() + " \n" +
-                        "Описание: " + baseInfo.description + " \n"
+                        "Имя: " + `${baseInfo.name || 'не добавлено'}` + " \n" +
+                        "Фамилия: " + `${baseInfo.surname || 'не добавлено'}` + " \n" +
+                        "Отчество: " + `${baseInfo.patronymic || 'не добавлено'}` + " \n" +
+                        "Дата рождения: " + `${baseInfo.birthDay?.toLocaleDateString() || 'не добавлено'}` + " \n" +
+                        "Описание: " + `${baseInfo.description || 'не добавлено'}` + " \n"
                     }
                 />
             </Card>

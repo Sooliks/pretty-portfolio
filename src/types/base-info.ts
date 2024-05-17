@@ -1,3 +1,6 @@
+
+
+
 export type BaseInfo = {
     name: string | null
     surname: string | null

@@ -72,7 +72,6 @@ export const saveBaseInfo = async (baseInfo: BaseInfo) => {
 export const saveEducation = async (education: EducationType) => {
     const session = await getServerSession(authConfig);
     if(!session)return {status: 'error', message: 'Произошла ошибка, обновите страницу!'};
-    if(await prisma.education.count({where: {authorId: session.user.id}})>2)return {status: 'error', message: 'Добавлено уже 3 образования'};
     if(education.id) {
         await prisma.education.update({
             where: {id: education.id, authorId: session.user.id},
@@ -85,6 +84,7 @@ export const saveEducation = async (education: EducationType) => {
             }
         })
     }else {
+        if(await prisma.education.count({where: {authorId: session.user.id}})>2)return {status: 'error', message: 'Добавлено уже 3 образования'};
         await prisma.education.create({
             data: {
                 institution: education.institution || "",

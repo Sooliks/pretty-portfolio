@@ -34,7 +34,7 @@ const Contacts = ({_contacts}:{_contacts: Contact[]}) => {
                     {contacts.map((contact, index)=>
                         <ContactItem onDelete={()=>removeItem(index)} _contact={contact} key={contact.id}/>
                     )}
-                    <Button className={'mt-2'} onClick={handleAdd}>Добавить {contacts.length>0 && 'еще'}</Button>
+                    <Button className={'mt-2'} onClick={handleAdd}>Добавить {contacts.length > 0 && 'еще'}</Button>
                 </AccordionItem>
             </Accordion>
         </Card>
