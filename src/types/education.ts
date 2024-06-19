@@ -1,7 +1,3 @@
-
-
-
-
 export type EducationType = {
     institution: string | undefined
     degree: string | undefined

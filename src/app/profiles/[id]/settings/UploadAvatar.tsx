@@ -57,5 +57,4 @@ const UploadAvatar = () => {
         </Card>
     )
 };
-
 export default UploadAvatar;

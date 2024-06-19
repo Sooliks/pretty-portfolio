@@ -5,7 +5,8 @@ import LoaderProvider from "@/components/LoaderProvider";
 export default function Providers({children}: { children: React.ReactNode }) {
     return (
         <SessionProvider>
-            <NextUIProvider>
+            <NextUIProvider
+                className={'dark'}>
                 <LoaderProvider>
                     {children}
                 </LoaderProvider>
