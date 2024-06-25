@@ -8,6 +8,7 @@ type ProfilePageProps = {
         id: string
     }
 }
+export const revalidate = 40;
 const ProfilePage = async ({params} : ProfilePageProps) => {
     const baseInfo = await getBaseInfo(params.id);
     const educations = await getEducations(params.id);

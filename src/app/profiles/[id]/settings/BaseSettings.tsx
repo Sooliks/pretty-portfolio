@@ -17,7 +17,7 @@ const BaseSettings = ({_baseInfo}:{_baseInfo: BaseInfo}) => {
     }
     function convertToDateValue(date: Date): string {
         const year = date.getFullYear();
-        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Добавляем ведущий ноль, если месяц < 10
+        const month = (date.getMonth()).toString().padStart(2, '0'); // Добавляем ведущий ноль, если месяц < 10
         const day = date.getDate().toString().padStart(2, '0'); // Добавляем ведущий ноль, если день < 10
         return `${year}-${month}-${day}`;
     }

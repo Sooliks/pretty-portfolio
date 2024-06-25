@@ -106,5 +106,4 @@ const RegistrationPage = () => {
         </form>
     );
 };
-
 export default RegistrationPage;

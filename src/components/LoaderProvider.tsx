@@ -26,6 +26,7 @@ const LoaderProvider: React.FC<LoaderProviderProps> = ({children}) => {
             }
         </>
     );
+    
 };
 
 export default LoaderProvider;
