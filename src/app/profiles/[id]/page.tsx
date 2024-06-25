@@ -17,7 +17,8 @@ const ProfilePage = async ({params} : ProfilePageProps) => {
         if(!date)return 'нету'
         const year = date.getFullYear();
         const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Добавляем ведущий ноль, если месяц < 10
-        const day = date.getDate().toString().padStart(2, '0'); // Добавляем ведущий ноль, если день < 10
+        const dayDate = date.getDate() + 1;
+        const day = dayDate.toString().padStart(2, '0'); // Добавляем ведущий ноль, если день < 10
         return `${day}.${month}.${year}`;
     }
     return (
