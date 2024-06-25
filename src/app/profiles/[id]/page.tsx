@@ -13,6 +13,13 @@ const ProfilePage = async ({params} : ProfilePageProps) => {
     const baseInfo = await getBaseInfo(params.id);
     const educations = await getEducations(params.id);
     const projects = await getProjects(params.id);
+    function convertToDateValue(date?: Date | null): string {
+        if(!date)return 'нету'
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Добавляем ведущий ноль, если месяц < 10
+        const day = date.getDate().toString().padStart(2, '0'); // Добавляем ведущий ноль, если день < 10
+        return `${day}.${month}.${year}`;
+    }
     return (
         <div className={'flex flex-row flex-wrap'}>
             <Card className={'p-4 mr-2 max-sm:mt-4'}>
@@ -26,7 +33,7 @@ const ProfilePage = async ({params} : ProfilePageProps) => {
                         "Имя: " + `${baseInfo.name || 'не добавлено'}` + " \n" +
                         "Фамилия: " + `${baseInfo.surname || 'не добавлено'}` + " \n" +
                         "Отчество: " + `${baseInfo.patronymic || 'не добавлено'}` + " \n" +
-                        "Дата рождения: " + `${baseInfo.birthDay?.toLocaleDateString() || 'не добавлено'}` + " \n" +
+                        "Дата рождения: " + `${convertToDateValue(baseInfo.birthDay) || 'не добавлено'}` + " \n" +
                         "Описание: " + `${baseInfo.description || 'не добавлено'}` + " \n"
                     }
                 />
@@ -46,8 +53,8 @@ const ProfilePage = async ({params} : ProfilePageProps) => {
                             defaultValue={
                                 "Степень: " + `${education.degree || 'не указано'}` + " \n" +
                                 "Специализация: " + `${education.major || 'не указано'}` + " \n" +
-                                "Дата поступления: " + `${education.start_date?.toLocaleDateString() || 'не указано'}` + " \n" +
-                                "Дата окончания: " + `${education.start_date?.toLocaleDateString() || 'не указано'}` + " \n"
+                                "Дата поступления: " + `${convertToDateValue(education?.start_date) || 'не указано'}` + " \n" +
+                                "Дата окончания: " + `${convertToDateValue(education?.end_date) || 'не указано'}` + " \n"
                             }
                         />
                     )
