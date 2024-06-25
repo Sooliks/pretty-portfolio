@@ -19,7 +19,7 @@ export async function generateMetadata({params: {id}}: {params: {id: string}}): 
         keywords: [id, 'профиль','пользователь', `${baseInfo.name}`, `${baseInfo.surname}`]
     }
 }
-export const revalidate = 40;
+export const revalidate = 20;
 const ProfileLayout = async ({params, children}: ProfileLayoutProps) => {
     const baseInfo = await getBaseInfo(params.id);
     const session = await getServerSession(authConfig);
